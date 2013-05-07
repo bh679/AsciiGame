@@ -27,13 +27,13 @@
    01001001</button>
   </div>
   <div id="createwrapper">
-  <button id="createfile" style="visibility: hidden">Create File</button>
+  <button id="createfile" style="visibility: hidden">Create File <div class="cost"></div> </button>
   </div>
   <div id="basewrapper">
-  <button id="base10" style="visibility: hidden">Base 10</button>
+  <button id="base10" style="visibility: hidden">Base 10 <div class="cost"></div> </button>
   </div>
-  <div id="costwrapper">
-  <button id="cost" style="visibility: hidden">Costs</button>
+  <div id="cosstwrapper">
+  <button id="costs" style="visibility: hidden">Costs <div class="cost"></div> </button>
   </div>
   <button id="myspace" value="MeSpace" style="visibility: hidden">I haz MerSperz @cc0unt (10 Internetz)</button>
   <div id="mespacediv" style="visibility: hidden">

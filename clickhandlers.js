@@ -10,6 +10,7 @@ $("#ASCII").click(function(){
         $("#console").append("<br/> ASCII obtained");
         $("#createfile").css("visibility", "visible");
         $("#base10").css("visibility", "visible");
+        $("#costs").css("visibility", "visible");
         $("#asciiwrapper").html("");
       }
       

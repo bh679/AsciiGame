@@ -9,15 +9,32 @@ Game.fps = 30;
 Game.frames = 0;
 Game.increment = 1;
 Game.data = 9;
+Game.files = 0;
 Game.Shop = new Object();
 Game.Shop.ASCII = false;
 Game.Shop.base10 = false;
+Game.Shop.costs = false;
+
+//buttons
+Button = [];
+Button['ascii'] = {cost:10};
+Button['base10'] = {cost:50};
+Button['file'] = {cost:5};
+Button['costs'] = {cost:127};
 
 Game.Initialise = function ()
 {
     //$('#myspace').css("visibility", "hidden");
     
 };
+
+function updateCosts()
+{
+  $("#ASCII .cost").html(Button['ascii'].cost);
+  $("#base10 .cost").html(Button['base10'].cost);
+  $("#file .cost").html(Button['file'].cost);
+  $("#costs .cost").html(Button['costs'].cost);
+}
 
 function disableButtons()
 {
@@ -45,6 +62,8 @@ Game.update = function()
     }
     
     disableButtons();
+    if (Game.Shop.costs)
+      updateCosts();
     
     this.frames++;
     if (this.frames % 30 == 0)
@@ -108,8 +127,10 @@ function dec2bin(x) {
 
   return bin;
 }
+
+//buy ascii
 $("#ASCII").click(function(){
-      var cost = 9;
+      var cost = Button['ascii'].cost;
       if (Game.data < cost)
         needMoreMoney();
       else
@@ -119,14 +140,16 @@ $("#ASCII").click(function(){
         $("#console").append("<br/> ASCII obtained");
         $("#createfile").css("visibility", "visible");
         $("#base10").css("visibility", "visible");
+        $("#costs").css("visibility", "visible");
         $("#asciiwrapper").html("");
       }
       
       return;
     });
     
+//buy base10
 $("#base10").click(function(){
-      var cost = 10;
+      var cost = Button['base10'].cost;
       if (Game.data < cost)
         needMoreMoney();
       else
@@ -139,8 +162,25 @@ $("#base10").click(function(){
       return;
     });
     
+//buy costs
+$("#costs").click(function(){
+      var cost = Button['costs'].cost;
+      if (Game.data < cost)
+        needMoreMoney();
+      else
+      { 
+        Game.data -= cost;
+        Game.Shop.costs = true; 
+        $("#console").append("<br/> costs obtained");
+        $("#costswrapper").html("");
+      }
+      return;
+    });
+    
+//buy files
 $("#createfile").click(function(){
-      var cost = 2;
+      var cost = Game.files*(Game.files+10)/10+5;
+      Button['ascii'].cost = cost;
       if (Game.data < cost)
         needMoreMoney();
       else
